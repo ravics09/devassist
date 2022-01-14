@@ -2221,7 +2221,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Image Compressors"
+                      alt="ImggCompressors"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
