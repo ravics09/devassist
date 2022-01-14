@@ -2003,7 +2003,8 @@ const Home = () => {
                 <div className={HomeStyle.categoryImageContainer}>
                   <img
                     className={HomeStyle.categoryImage}
-                    src={require(`../../assets/images/${item.logo}.png`)}
+                    src={require(`../../assets/images/${item.logo}.png`)
+                  } alt="UI Inspiration"
                   />
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
@@ -2034,6 +2035,7 @@ const Home = () => {
                   <img
                     className={HomeStyle.categoryImage}
                     src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Icons Illustrations"
                   />
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
@@ -2064,6 +2066,7 @@ const Home = () => {
                   <img
                     className={HomeStyle.categoryImage}
                     src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Fonts"
                   />
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
@@ -2094,6 +2097,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
+                      alt="Font Recognition"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2124,6 +2128,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
+                      alt="Colours Gradients"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2154,6 +2159,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
+                      alt="Stock Videos"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2184,6 +2190,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
+                      alt="Stock Images"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2214,7 +2221,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="link image"
+                      alt="Image Compressors"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2245,6 +2252,7 @@ const Home = () => {
                     <img
                       className={HomeStyle.categoryImage}
                       src={require(`../../assets/images/${item.logo}.png`)}
+                      alt="Wireframing Tools"
                     />
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
@@ -2272,7 +2280,7 @@ const Home = () => {
                   onClick={() => openInNewTab(item.link)}
                 >
                   <div className={HomeStyle.categoryImageContainer}>
-                    <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} />
+                    <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} alt="Mockup Tools"/>
                   </div>
                   <div className={HomeStyle.categoryCardInfo}>
                     <p className={HomeStyle.categoryTitle}>{item.title}</p>
@@ -2299,7 +2307,7 @@ const Home = () => {
                 onClick={() => openInNewTab(item.link)}
               >
                 <div className={HomeStyle.categoryImageContainer}>
-                  <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} />
+                  <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} alt="UI Resources"/>
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
                   <p className={HomeStyle.categoryTitle}>{item.title}</p>
@@ -2318,7 +2326,7 @@ const Home = () => {
     <Row className={HomeStyle.listSection}>
       <h4 className={HomeStyle.listSectionTitle}>Tech Youtubers</h4>
       <div className={HomeStyle.youtuberSection}>
-        <img src={PageNotFound} width={300} height={300}/>
+        <img src={PageNotFound} width={300} height={300} alt="Tech Youtuber"/>
         <p>
           This section under construction...
         </p>
