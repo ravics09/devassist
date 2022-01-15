@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, {
+  Pagination, Zoom, Navigation, Autoplay
+} from 'swiper';
 import "swiper/css";
+import "swiper/css/pagination";
+import 'swiper/css/navigation';
 import { FaUsersCog } from "react-icons/fa";
 import { GiConqueror } from "react-icons/gi";
 import { MdMobileScreenShare } from "react-icons/md";
@@ -16,10 +21,12 @@ import {
   ImWrench,
   ImDatabase,
 } from "react-icons/im";
-import { SiYoutubestudio} from "react-icons/si";
+import { SiYoutubestudio } from "react-icons/si";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomeStyle from "./homeStyle.module.css";
-import PageNotFound from './../../assets/images/underconstruction.png';
+import PageNotFound from "./../../assets/images/underconstruction.png";
+// install Swiper modules
+SwiperCore.use([Zoom,Pagination, Autoplay, Navigation]);
 
 const UIInspiration = [
   {
@@ -1959,13 +1966,28 @@ const UIResources = [
 ];
 
 const Home = () => {
+  const isSSR = typeof window !== "undefined";
   const [loading, setLoading] = useState(true);
   const [section, setSection] = useState("all");
+  const [windowSize, setWindowSize] = useState({
+    width: isSSR ? 1200 : window.innerWidth,
+    height: isSSR ? 800 : window.innerHeight,
+  });
+
+  const changeWindowSize = () => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  };
 
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
+
+    window.addEventListener("resize", changeWindowSize);
+
+    return () => {
+      window.removeEventListener("resize", changeWindowSize);
+    };
   }, []);
 
   const openInNewTab = (url) => {
@@ -2003,8 +2025,8 @@ const Home = () => {
                 <div className={HomeStyle.categoryImageContainer}>
                   <img
                     className={HomeStyle.categoryImage}
-                    src={require(`../../assets/images/${item.logo}.png`)
-                  } alt="UI Inspiration"
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="UI Inspiration"
                   />
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
@@ -2083,216 +2105,220 @@ const Home = () => {
   );
 
   const FontRecognitionSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Font Recognition</h4>
-        {FontRecognition
-          ? FontRecognition.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Font Recognition"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Font Recognition</h4>
+      {FontRecognition
+        ? FontRecognition.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Font Recognition"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const ColoursGradientsSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Colours Gradients</h4>
-        {ColoursGradients
-          ? ColoursGradients.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Colours Gradients"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Colours Gradients</h4>
+      {ColoursGradients
+        ? ColoursGradients.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Colours Gradients"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const StockVideosSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Stock Videos</h4>
-        {StockVideos
-          ? StockVideos.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Stock Videos"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Stock Videos</h4>
+      {StockVideos
+        ? StockVideos.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Stock Videos"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const StockImagesSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Stock Images</h4>
-        {StockImages
-          ? StockImages.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Stock Images"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Stock Images</h4>
+      {StockImages
+        ? StockImages.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Stock Images"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const ImageCompressorsSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Image Compressors</h4>
-        {ImageCompressors
-          ? ImageCompressors.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="ImggCompressors"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Image Compressors</h4>
+      {ImageCompressors
+        ? ImageCompressors.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="ImggCompressors"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const WireframingToolsSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Wireframing Tools</h4>
-        {WireframingTools
-          ? WireframingTools.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img
-                      className={HomeStyle.categoryImage}
-                      src={require(`../../assets/images/${item.logo}.png`)}
-                      alt="Wireframing Tools"
-                    />
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Wireframing Tools</h4>
+      {WireframingTools
+        ? WireframingTools.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Wireframing Tools"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const MockupToolsSection = () => (
-      <Row className={HomeStyle.listSection}>
-        <h4 className={HomeStyle.listSectionTitle}>Mockup Tools</h4>
-        {MockupTools
-          ? MockupTools.map((item) => (
-              <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
-                <div
-                  className={HomeStyle.categoryCard}
-                  style={{ cursor: "pointer" }}
-                  onClick={() => openInNewTab(item.link)}
-                >
-                  <div className={HomeStyle.categoryImageContainer}>
-                    <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} alt="Mockup Tools"/>
-                  </div>
-                  <div className={HomeStyle.categoryCardInfo}>
-                    <p className={HomeStyle.categoryTitle}>{item.title}</p>
-                    <p className={HomeStyle.categorySubTitle}>
-                      {item.description}
-                    </p>
-                  </div>
+    <Row className={HomeStyle.listSection}>
+      <h4 className={HomeStyle.listSectionTitle}>Mockup Tools</h4>
+      {MockupTools
+        ? MockupTools.map((item) => (
+            <Col key={item.id} sm={12} md={6} lg={4} xl={3}>
+              <div
+                className={HomeStyle.categoryCard}
+                style={{ cursor: "pointer" }}
+                onClick={() => openInNewTab(item.link)}
+              >
+                <div className={HomeStyle.categoryImageContainer}>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="Mockup Tools"
+                  />
                 </div>
-              </Col>
-            ))
-          : null}
-      </Row>
+                <div className={HomeStyle.categoryCardInfo}>
+                  <p className={HomeStyle.categoryTitle}>{item.title}</p>
+                  <p className={HomeStyle.categorySubTitle}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </Col>
+          ))
+        : null}
+    </Row>
   );
 
   const UIResourcesSection = () => (
@@ -2307,7 +2333,11 @@ const Home = () => {
                 onClick={() => openInNewTab(item.link)}
               >
                 <div className={HomeStyle.categoryImageContainer}>
-                  <img className={HomeStyle.categoryImage} src={require(`../../assets/images/${item.logo}.png`)} alt="UI Resources"/>
+                  <img
+                    className={HomeStyle.categoryImage}
+                    src={require(`../../assets/images/${item.logo}.png`)}
+                    alt="UI Resources"
+                  />
                 </div>
                 <div className={HomeStyle.categoryCardInfo}>
                   <p className={HomeStyle.categoryTitle}>{item.title}</p>
@@ -2326,13 +2356,11 @@ const Home = () => {
     <Row className={HomeStyle.listSection}>
       <h4 className={HomeStyle.listSectionTitle}>Tech Youtubers</h4>
       <div className={HomeStyle.youtuberSection}>
-        <img src={PageNotFound} width={300} height={300} alt="Tech Youtuber"/>
-        <p>
-          This section under construction...
-        </p>
+        <img src={PageNotFound} width={300} height={300} alt="Tech Youtuber" />
+        <p>This section under construction...</p>
       </div>
     </Row>
-  )
+  );
 
   const onFilter = (filterName) => {
     setSection(filterName);
@@ -2353,9 +2381,14 @@ const Home = () => {
         <Col>
           <Swiper
             spaceBetween={10}
-            slidesPerView={7.5}
-            onSlideChange={() => console.log("slide change")}
-            onSwiper={(swiper) => console.log(swiper)}
+            slidesPerView={windowSize.width<=500 ? 2:7.3}
+            autoplay
+            speed={500}
+            effect={"fade"}
+            navigation
+            fadeEffect={{
+              crossFade: true,
+            }}
           >
             <SwiperSlide>
               <div
@@ -2531,7 +2564,7 @@ const Home = () => {
           wireframingtools: <WireframingToolsSection />,
           mockuptools: <MockupToolsSection />,
           uiresources: <UIResourcesSection />,
-          techyoutubers: <TechYoutubersSection/>
+          techyoutubers: <TechYoutubersSection />,
         }[section]
       )}
     </>
