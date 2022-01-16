@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="16*16"/>
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" sizes="32*32"/> -->
-    <link rel="icon" href="%PUBLIC_URL%/favicon.png" sizes="60*60"/>
+    <link rel="icon" href="%PUBLIC_URL%/favicon.png" sizes="60*60" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -27,6 +27,20 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Dev Assist</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-8SDJNC9VB0"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-8SDJNC9VB0");
+    </script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
