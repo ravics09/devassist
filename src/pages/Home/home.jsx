@@ -1966,16 +1966,12 @@ const UIResources = [
 ];
 
 const Home = () => {
-  const isSSR = typeof window !== "undefined";
   const [loading, setLoading] = useState(true);
   const [section, setSection] = useState("all");
-  const [windowSize, setWindowSize] = useState({
-    width: isSSR ? 1200 : window.innerWidth,
-    height: isSSR ? 800 : window.innerHeight,
-  });
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const changeWindowSize = () => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+    setWindowWidth(window.innerWidth);
   };
 
   useEffect(() => {
@@ -2381,7 +2377,7 @@ const Home = () => {
         <Col>
           <Swiper
             spaceBetween={10}
-            slidesPerView={windowSize.width<=500 ? 2:7.3}
+            slidesPerView={windowWidth<=500 ? 2:7.3}
             autoplay
             speed={500}
             effect={"fade"}
