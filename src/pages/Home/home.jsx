@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, {
-  Pagination, Zoom, Navigation, Autoplay
-} from 'swiper';
+import SwiperCore, { Pagination, Zoom, Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
-import 'swiper/css/navigation';
+import "swiper/css/navigation";
 import { FaUsersCog } from "react-icons/fa";
 import { GiConqueror } from "react-icons/gi";
 import { MdMobileScreenShare } from "react-icons/md";
@@ -26,7 +24,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HomeStyle from "./homeStyle.module.css";
 import PageNotFound from "./../../assets/images/underconstruction.png";
 
-SwiperCore.use([Zoom,Pagination, Autoplay, Navigation]);
+SwiperCore.use([Zoom, Pagination, Autoplay, Navigation]);
 
 const UIInspiration = [
   {
@@ -1992,7 +1990,7 @@ const Home = () => {
   };
 
   const AllSection = () => (
-    <Row>
+    <>
       <UIInspirationSection />
       <IconsIllustrationsSection />
       <FontsSection />
@@ -2004,11 +2002,11 @@ const Home = () => {
       <WireframingToolsSection />
       <MockupToolsSection />
       <UIResourcesSection />
-    </Row>
+    </>
   );
 
   const UIInspirationSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row>
       <h4 className={HomeStyle.listSectionTitle}>UI Inspiration</h4>
       {UIInspiration
         ? UIInspiration.map((item) => (
@@ -2039,7 +2037,7 @@ const Home = () => {
   );
 
   const IconsIllustrationsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row>
       <h4 className={HomeStyle.listSectionTitle}>Icons Illustrations</h4>
       {IconsIllustrations
         ? IconsIllustrations.map((item) => (
@@ -2070,7 +2068,7 @@ const Home = () => {
   );
 
   const FontsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row>
       <h4 className={HomeStyle.listSectionTitle}>Fonts</h4>
       {Fonts
         ? Fonts.map((item) => (
@@ -2101,7 +2099,7 @@ const Home = () => {
   );
 
   const FontRecognitionSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Font Recognition</h4>
       {FontRecognition
         ? FontRecognition.map((item) => (
@@ -2132,7 +2130,7 @@ const Home = () => {
   );
 
   const ColoursGradientsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Colours Gradients</h4>
       {ColoursGradients
         ? ColoursGradients.map((item) => (
@@ -2163,7 +2161,7 @@ const Home = () => {
   );
 
   const StockVideosSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Stock Videos</h4>
       {StockVideos
         ? StockVideos.map((item) => (
@@ -2194,7 +2192,7 @@ const Home = () => {
   );
 
   const StockImagesSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Stock Images</h4>
       {StockImages
         ? StockImages.map((item) => (
@@ -2225,7 +2223,7 @@ const Home = () => {
   );
 
   const ImageCompressorsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Image Compressors</h4>
       {ImageCompressors
         ? ImageCompressors.map((item) => (
@@ -2256,7 +2254,7 @@ const Home = () => {
   );
 
   const WireframingToolsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Wireframing Tools</h4>
       {WireframingTools
         ? WireframingTools.map((item) => (
@@ -2287,7 +2285,7 @@ const Home = () => {
   );
 
   const MockupToolsSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>Mockup Tools</h4>
       {MockupTools
         ? MockupTools.map((item) => (
@@ -2318,7 +2316,7 @@ const Home = () => {
   );
 
   const UIResourcesSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row >
       <h4 className={HomeStyle.listSectionTitle}>UI Resources</h4>
       {UIResources
         ? UIResources.map((item) => (
@@ -2349,7 +2347,7 @@ const Home = () => {
   );
 
   const TechYoutubersSection = () => (
-    <Row className={HomeStyle.listSection}>
+    <Row>
       <h4 className={HomeStyle.listSectionTitle}>Tech Youtubers</h4>
       <div className={HomeStyle.youtuberSection}>
         <img src={PageNotFound} width={300} height={300} alt="Tech Youtuber" />
@@ -2372,12 +2370,12 @@ const Home = () => {
           </p>
         </Col>
       </Row>
-      <Row>
-        <h4 className={HomeStyle.listSectionTitle}>Filter</h4>
+      <Row className={HomeStyle.SwiperContainer}>
+        <h4 className={HomeStyle.swiperTitle}>Filter</h4>
         <Col>
           <Swiper
-            spaceBetween={10}
-            slidesPerView={windowWidth<=500 ? 2:7.3}
+            spaceBetween={windowWidth <= 500 ? 3 : 10}
+            slidesPerView={windowWidth <= 500 ? 2 : 7.3}
             autoplay
             speed={500}
             effect={"fade"}
@@ -2547,21 +2545,25 @@ const Home = () => {
           <Spinner animation="grow" />
         </div>
       ) : (
-        {
-          all: <AllSection />,
-          uiinspiration: <UIInspirationSection />,
-          iconsillustrations: <IconsIllustrationsSection />,
-          fonts: <FontsSection />,
-          fontrecognition: <FontRecognitionSection />,
-          coloursgradients: <ColoursGradientsSection />,
-          stockvideos: <StockVideosSection />,
-          stockimages: <StockImagesSection />,
-          imagecompressors: <ImageCompressorsSection />,
-          wireframingtools: <WireframingToolsSection />,
-          mockuptools: <MockupToolsSection />,
-          uiresources: <UIResourcesSection />,
-          techyoutubers: <TechYoutubersSection />,
-        }[section]
+        <Row className={HomeStyle.listContainer}>
+          {
+            {
+              all: <AllSection />,
+              uiinspiration: <UIInspirationSection />,
+              iconsillustrations: <IconsIllustrationsSection />,
+              fonts: <FontsSection />,
+              fontrecognition: <FontRecognitionSection />,
+              coloursgradients: <ColoursGradientsSection />,
+              stockvideos: <StockVideosSection />,
+              stockimages: <StockImagesSection />,
+              imagecompressors: <ImageCompressorsSection />,
+              wireframingtools: <WireframingToolsSection />,
+              mockuptools: <MockupToolsSection />,
+              uiresources: <UIResourcesSection />,
+              techyoutubers: <TechYoutubersSection />,
+            }[section]
+          }
+        </Row>
       )}
     </>
   );

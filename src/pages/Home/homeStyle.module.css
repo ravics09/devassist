@@ -11,6 +11,19 @@
   .headerSubTitle {
     font-family: "Times New Roman", Times, serif;
   }
+  .SwiperContainer{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  .swiperTitle{
+    font-family: "Times New Roman", Times, serif;
+    font-size: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
   .filter{
     text-align: center;
     height:130px;
@@ -18,7 +31,7 @@
     background-color: #f1acac !important;
     border-radius: 50%; 
     padding-top: 40px;
-    margin-left: 45px;
+    padding-bottom: 40px;
   }
   .filter:hover{
     background-color: #f17878 !important;
@@ -27,21 +40,31 @@
     font-family: "Times New Roman", Times, serif;
     font-size: 16px;
   }
+  .listContainer{
+    flex: 1;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
   .listSection{
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
   .listSectionTitle{
     font-family: "Times New Roman", Times, serif;
     font-size: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 25px;
+    padding-left: 20px;
   }
   .categoryCard {
     flex:1;
     height: 400px;
-    margin:10px;
+    margin-top:10px;
+    margin-bottom:10px;
     border: solid lightgray !important;
     border-radius: 20px;
     border-width: 1px !important;
@@ -49,9 +72,9 @@
   .categoryCard:hover{
     background-color: #f17878 !important;
     border: solid #f17878 !important;
+    border-width: 0.5px !important;
   }
   .categoryImageContainer{
-    flex: 1;
     height: 50%;
     align-items: center;
     border-top-right-radius: 20px;
@@ -64,22 +87,15 @@
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
   }
-  /* .categoryImage:hover{
-    background-color: #f17878 !important;
-  } */
   .categoryCardInfo{
     flex:1;
+    text-align: center;
     padding-top: 20px;
     height: 50%;
-    padding-left: 20px;
-    padding-right: 20px;
     background-color: #f1acac !important;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
   }
-  /* .categoryCardInfo:hover{
-    background-color: #f17878 !important;
-  } */
   .categoryTitle {
     font-family: "Times New Roman", Times, serif;
     font-size: 20px;
