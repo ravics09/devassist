@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import Home from './pages/Home/home';
+import Footer from './../src/components/Footer/index';
 import * as routes from './utils/constant';
 
 import './App.css';
@@ -18,6 +19,7 @@ function App() {
         </Routes>
       </Container>
     </main>
+    <Footer/>
     </BrowserRouter>
   );
 }

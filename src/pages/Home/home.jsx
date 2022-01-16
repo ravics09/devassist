@@ -25,7 +25,7 @@ import { SiYoutubestudio } from "react-icons/si";
 import "bootstrap/dist/css/bootstrap.min.css";
 import HomeStyle from "./homeStyle.module.css";
 import PageNotFound from "./../../assets/images/underconstruction.png";
-// install Swiper modules
+
 SwiperCore.use([Zoom,Pagination, Autoplay, Navigation]);
 
 const UIInspiration = [
