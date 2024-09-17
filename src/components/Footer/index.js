@@ -8,9 +8,9 @@ const Footer = () => {
         <hr />
         <Row>
           <Col className="text-center pb-3">
-            Copyright &copy; 2022 DevAssist.
+            Copyright &copy; 2024 DevAssist.
             <br/>
-            A Javascript Centric Product
+            By Ravi Sharma
           </Col>
         </Row>
       </Container>
